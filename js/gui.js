@@ -5,7 +5,7 @@ UserMove.to = SQUARES.NO_SQ;
 var MirrorFiles = [ FILES.FILE_H, FILES.FILE_G, FILES.FILE_F, FILES.FILE_E, FILES.FILE_D, FILES.FILE_C, FILES.FILE_B, FILES.FILE_A ];
 var MirrorRanks = [ RANKS.RANK_8, RANKS.RANK_7, RANKS.RANK_6, RANKS.RANK_5, RANKS.RANK_4, RANKS.RANK_3, RANKS.RANK_2, RANKS.RANK_1 ];
 
-var SQ_SIZE = 120
+var SQ_SIZE = 60
 
 function MIRROR120(sq) {
 	var file = MirrorFiles[FilesBrd[sq]];
@@ -77,31 +77,29 @@ function CheckResult() {
 }
 
 function ClickedSquare(pageX, pageY) {
-	var position = $("#Board").position();
-	console.log("Piece clicked at " + pageX + "," + pageY + " board top:" + position.top + " board left:" + position.left);
-	
-	var workedX = Math.floor(position.left);
-	var workedY = Math.floor(position.top);
-	var pageX = Math.floor(pageX);
-	var pageY = Math.floor(pageY);
-	
-	var file = Math.floor((pageX-workedX) / SQ_SIZE);
-	var rank = 7 - Math.floor((pageY-workedY) / SQ_SIZE);
-	
-	var sq = FR2SQ(file,rank);
-	
-	
-	if(GameController.BoardFlipped == BOOL.TRUE) {
-		sq = MIRROR120(sq);
-	}
-	
-	console.log("WorkedX: " + workedX + " WorkedY:" + workedY + " File:" + file + " Rank:" + rank);
-	console.log("clicked:" + PrSq(sq));	
-	
-	SetSqSelected(sq); // must go here before mirror
-	
-	return sq;
-
+    var position = $("#Board").position();
+    console.log("Piece clicked at " + pageX + "," + pageY + " board top:" + position.top + " board left:" + position.left);
+    
+    var workedX = Math.floor(position.left);
+    var workedY = Math.floor(position.top);
+    var pageX = Math.floor(pageX);
+    var pageY = Math.floor(pageY);
+    
+    var file = Math.floor((pageX-workedX) / SQ_SIZE);
+    var rank = 7 - Math.floor((pageY-workedY) / SQ_SIZE);
+    
+    var sq = FR2SQ(file,rank);
+    
+    if(GameController.BoardFlipped == BOOL.TRUE) {
+        sq = MIRROR120(sq);
+    }
+    
+    console.log("WorkedX: " + workedX + " WorkedY:" + workedY + " File:" + file + " Rank:" + rank);
+    console.log("clicked:" + PrSq(sq));    
+    
+    SetSqSelected(sq);
+    
+    return sq;
 }
 
 function CheckAndSet() {

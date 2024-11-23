@@ -1,8 +1,17 @@
-body {
-	transform: scale(0.5);
-	transform-origin: top left;
-	width: 200%; /* Compensate for scale to maintain layout */
+#Board {
+    transform: scale(0.5);
+    transform-origin: top left;
+    width: 960px;  /* Original width */
+    height: 960px; /* Original height */
+    position: relative;
 }
+
+.Square, .Piece {
+    width: 120px !important;  /* Match your SQ_SIZE */
+    height: 120px !important;
+}
+
+
 #FenInDiv {
 	position: absolute;
 	top: 1000px;
